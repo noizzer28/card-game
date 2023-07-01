@@ -113,9 +113,12 @@ h1 {
     display: flex;
     gap: 24px;
     margin-bottom: 67px;
+    position: relative;
 }
 
 .start-box-number {
+    display: flex;
+    background-color: #fff;
     width: 98px;
     height: 98px;
     border-radius: 12px;
@@ -123,9 +126,24 @@ h1 {
     line-height: 72px;
     color: #0080C1;
     transition: transform 0.3s;
+    justify-content: center;
+    align-items: center;
 }
 
 .start-box-number:hover {
     transform: scale(1.15);
-    border: 2px solid #004980;
+    
+}
+.start-box-radio:checked + .start-box-number {
+    background-color: #004980;
+    color: #fff;
+}
+
+.start-box-radio {
+    width: 0;
+	height: 0;
+	position: absolute;
+    opacity: 0;
+    z-index: -1;
+
 }
