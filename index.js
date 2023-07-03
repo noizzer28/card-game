@@ -20,8 +20,9 @@ function renderStartPage() {
                 <div class="start-box-number">3</div>
             </label>
         </div>
+        <button class="start-box-button button">Старт</button>
       </form>
-      <button class="start-box-button button">Старт</button>
+
     </div>`;
 
   const startButton = document.querySelector(".start-box-button");
