@@ -23,7 +23,7 @@ function renderStartPage() {
             </label>
         </div>
         <button class="start-box-button button">Старт</button>
-      </form>
+      </form>ч
     </div>`;
 
   const startButton = document.querySelector(".start-box-button");
