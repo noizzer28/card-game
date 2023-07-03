@@ -1,3 +1,5 @@
+import { renderGame } from "./components/startGame.js";
+
 let gameLevel = null;
 const app = document.getElementById("app");
 
@@ -22,7 +24,6 @@ function renderStartPage() {
         </div>
         <button class="start-box-button button">Старт</button>
       </form>
-
     </div>`;
 
   const startButton = document.querySelector(".start-box-button");
@@ -31,33 +32,13 @@ function renderStartPage() {
     startButton.addEventListener("click", () => {
       if (menuOption.checked) {
         gameLevel = menuOption.value;
-      }
-      switch (gameLevel) {
-        case "1":
-          renderEasyLevel();
-          break;
-        case "2":
-          renderMediumLevel();
-          break;
-        case "3":
-          renderHardLevel();
-          break;
-        default:
-          break;
+        renderGame({
+            app,
+            gameLevel,
+        })
       }
     });
   }
 }
+
 renderStartPage();
-
-function renderEasyLevel() {
-  app.innerHTML = `Easy level is coming soon`;
-}
-
-function renderMediumLevel() {
-  app.innerHTML = `Medium level is coming soon`;
-}
-
-function renderHardLevel() {
-  app.innerHTML = `Hard level is coming soon`;
-}
