@@ -1,153 +1,199 @@
 /* Обнуление */
 * {
-    padding: 0;
-    margin: 0;
-    border: 0;
-    box-sizing: border-box;
-  }
-  
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-size: inherit;
-    font-weight: inherit;
-  }
-  
-  a {
-    color: inherit;
-    text-decoration: none;
-    font-size: inherit;
-    font-weight: inherit;
-  }
-  
-  *::before,
-  *::after {
-    box-sizing: border-box;
-  }
-  
-  body {
-    min-height: 100vh;
-    scroll-behavior: smooth;
-    text-rendering: optimizeSpeed;
-    line-height: 1.5;
-    font-family: "Poppins", sans-serif;
-  }
-  
-  * ul,
-  * ol {
-    list-style: none;
-  }
-  
-  img {
-    max-width: 100%;
-    display: block;
-  }
-  
-  input,
-  button,
-  textarea,
-  select {
-    font: inherit;
-    color: inherit;
-  }
+  padding: 0;
+  margin: 0;
+  border: 0;
+  box-sizing: border-box;
+}
 
-@font-face {
-    font-family: StratosSkyeng;
-    src: url(./fonts/stratosskyengweb-regular.woff);
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 body {
-    font-family: "StratosSkyeng";
-    background-color: #004980;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+  min-height: 100vh;
+  scroll-behavior: smooth;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+  font-family: "Poppins", sans-serif;
+}
+
+* ul,
+* ol {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+@font-face {
+  font-family: StratosSkyeng;
+  src: url(./fonts/stratosskyengweb-regular.woff);
+}
+
+body {
+  font-family: "StratosSkyeng";
+  background-color: #004980;
+  padding: 22px;
 }
 
 h1 {
-    color: #004980;
-    font-size: 40px;
-    line-height: 48px;
+  color: #004980;
+  font-size: 40px;
+  line-height: 48px;
 }
 
 .button {
-    color: #fff;
-    display: flex;
-    width: 246px;
-    height: 48px;
-    justify-content: center;
-    align-items: center;
-    border-radius: 12px;
-    background: #7AC100;
-    transition: all 0.2s;
-    cursor: pointer;
+  color: #fff;
+  display: flex;
+  width: 246px;
+  height: 48px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12px;
+  background: #7ac100;
+  transition: all 0.2s;
+  cursor: pointer;
 }
 .button:hover {
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 }
 
-.button:active{
-    opacity: 0.7;
+.button:active {
+  opacity: 0.7;
 }
 
+.start-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+}
 .start-box {
-    width: 480px;
-    height: 459px;
-    border-radius: 12px;
-    background: #C2F5FF;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  width: 480px;
+  height: 459px;
+  border-radius: 12px;
+  background: #c2f5ff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .start-box-text {
-    text-align: center;
-    width: 208px;
-    margin: 52px 48px;
+  text-align: center;
+  width: 208px;
+  margin: 52px 48px;
 }
 .start-box-flex {
-    display: flex;
-    gap: 24px;
-    margin-bottom: 67px;
-    position: relative;
+  display: flex;
+  gap: 24px;
+  margin-bottom: 67px;
+  position: relative;
 }
 
 .start-box-number {
-    display: flex;
-    background-color: #fff;
-    width: 98px;
-    height: 98px;
-    border-radius: 12px;
-    font-size: 64px;
-    line-height: 72px;
-    color: #0080C1;
-    transition: transform 0.3s;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  background-color: #fff;
+  width: 98px;
+  height: 98px;
+  border-radius: 12px;
+  font-size: 64px;
+  line-height: 72px;
+  color: #0080c1;
+  transition: transform 0.3s;
+  justify-content: center;
+  align-items: center;
 }
 
 .start-box-number:hover {
-    transform: scale(1.15);
-    
+  transform: scale(1.15);
 }
 .start-box-radio:checked + .start-box-number {
-    background-color: #004980;
-    color: #fff;
+  background-color: #004980;
+  color: #fff;
 }
 
 .start-box-radio {
-    width: 0;
-	height: 0;
-	position: absolute;
-    opacity: 0;
-    z-index: -1;
-
+  width: 0;
+  height: 0;
+  position: absolute;
+  opacity: 0;
+  z-index: -1;
 }
 
 .start-box-button {
-    margin: auto;
+  margin: auto;
+}
+.game {
+  max-width: 1024px;
+  margin: auto;
+}
+.game-flex {
+  display: flex;
+  justify-content: space-between;
+  height: 148px;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.game-time {
+  color: #fff;
+  font-size: 64px;
+  line-height: 72px;
+  position: relative;
+}
+
+.game-time-min,
+.game-time-sek {
+  font-size: 16px;
+  line-height: 32px;
+  position: absolute;
+  top: -23px;
+}
+
+.game-time-sek {
+  right: 2%;
+}
+.game-time-min {
+  left: 25%;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  gap: 15px;
+}
+
+.card {
+  width: 95px;
+  height: 133px;
+  background-image: url(./image/cover.jpg);
+  border-radius: 4px;
 }
