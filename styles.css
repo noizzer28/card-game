@@ -115,7 +115,6 @@ h1 {
 .start-box-flex {
   display: flex;
   gap: 24px;
-  margin-bottom: 67px;
   position: relative;
 }
 
@@ -191,7 +190,7 @@ h1 {
   gap: 15px;
 }
 
-.card {
+.card-back {
   width: 95px;
   height: 133px;
   background-image: url(./image/cover.jpg);

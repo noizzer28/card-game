@@ -1,11 +1,9 @@
-// import { renderGame } from "./components/startGame.js";
-
+import Deck from "./components/deck.js";
 let gameLevel = null;
 const gamecontainer = document.querySelector(".game");
 const startContainer = document.getElementById("start");
-
+const deck = new Deck();
 const cardsBack = [];
-const cardsFront = [];
 
 function renderStartPage() {
   gamecontainer.style.display = "none";
@@ -27,13 +25,14 @@ function renderBackSide() {
   const backSideElement = document.querySelector(".back-side");
 
   for (let index = 0; index < 36; index++) {
-    const element = `<div class="card"></div>`;
+    const element = `<div class="card-back"></div>`;
     cardsBack.push(element);
   }
   const cardsBackHTML = cardsBack.join("");
-  console.log(cardsBackHTML);
-  console.log(backSideElement);
   backSideElement.innerHTML = cardsBackHTML;
+  setTimeout(() => {
+    backSideElement.style.display = "none";
+  }, 1000);
 }
-
+console.log(deck);
 renderStartPage();
