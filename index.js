@@ -2,7 +2,7 @@ import Deck from "./components/deck.js";
 let gameLevel = null;
 const gamecontainer = document.querySelector(".game");
 const startContainer = document.getElementById("start");
-const deck = new Deck();
+const deck = Object.values(new Deck()).flat();
 const cardsBack = [];
 
 function renderStartPage() {
@@ -14,6 +14,7 @@ function renderStartPage() {
       if (menuOption.checked) {
         gameLevel = menuOption.value;
         renderBackSide();
+        renderFrontSide();
         startContainer.style.display = "none";
         gamecontainer.style.display = "block";
       }
@@ -28,11 +29,30 @@ function renderBackSide() {
     const element = `<div class="card-back"></div>`;
     cardsBack.push(element);
   }
-  const cardsBackHTML = cardsBack.join("");
-  backSideElement.innerHTML = cardsBackHTML;
-  setTimeout(() => {
-    backSideElement.style.display = "none";
-  }, 1000);
+  backSideElement.innerHTML = cardsBack.join("");
+  // setTimeout(() => {
+  //   backSideElement.style.display = "none";
+  // }, 1500);
 }
-console.log(deck);
+
+function renderFrontSide() {
+  const frontSideElement = document.querySelector(".front-side");
+  frontSideElement.innerHTML = deck
+    .map((card) => {
+      return ` 
+      <div class="card-front">
+    <div class="card-value-top">
+        <p>A</p>
+      ${card.suit.top}
+    </div>
+      ${card.suit.middle}
+    <div class="card-value-bottom">
+        <p>A</p>
+      ${card.suit.top}
+    </div>
+</div>`;
+    })
+    .join("");
+}
+
 renderStartPage();
