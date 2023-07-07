@@ -185,14 +185,17 @@ h1 {
 .game-time-min {
     left: 25%;
 }
+
 .grid {
     display: grid;
-    grid-template-columns: repeat(9, 1fr);
+    grid-template-columns: repeat(6, 1fr);
     gap: 15px;
     position: absolute;
-    /* top: 0;
-  left: 0;
-  transform: translate(-50%, -50%); */
+}
+.cont {
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 .card-back {
@@ -201,7 +204,6 @@ h1 {
     background-image: url(./image/cover.jpg);
     border-radius: 4px;
     transition: 1s;
-    /* backface-visibility: hidden; */
 }
 
 .card-front {
@@ -215,17 +217,8 @@ h1 {
     justify-content: center;
     align-items: center;
     z-index: -1;
-    /* backface-visibility: hidden;
-  /* transform: rotateY(180deg); */
-    /* transition: 1s; */
 }
-/* .card-back:hover {
-    transform: rotateY(180deg);
-    visibility: hidden;
-  }
-  .card-front:hover {
-    transform: rotateY(360deg);
-  } */
+
 .card-value-top {
     position: absolute;
     display: flex;
