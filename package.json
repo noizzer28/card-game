@@ -5,7 +5,8 @@
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "format": "prettier —write ."
+        "format": "prettier —write .",
+        "build": "set NODE_ENV=production && webpack"
     },
     "author": "",
     "license": "ISC",
@@ -15,7 +16,12 @@
         "lodash": "^4.17.21"
     },
     "devDependencies": {
+        "css-loader": "^6.8.1",
         "eslint": "^8.44.0",
-        "prettier": "^3.0.0"
+        "html-webpack-plugin": "^5.5.3",
+        "prettier": "^3.0.0",
+        "style-loader": "^3.3.3",
+        "webpack": "^5.88.1",
+        "webpack-cli": "^5.1.4"
     }
 }
