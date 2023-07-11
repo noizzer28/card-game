@@ -7,6 +7,7 @@ let firstCard
 let secondCard
 let firstCardValue
 let secondCardValue
+let moves = 0
 
 function renderStartPage() {
     const startContainer = document.getElementById('start')
@@ -73,10 +74,14 @@ function renderGamePlay() {
                         secondCard.classList.add('matched')
                         firstCard = null
                         secondCard = null
-                        setTimeout(() => {
-                            alert('Вы выиграли')
-                            location.reload()
-                        }, 1000)
+                        moves += 1
+                        console.log(gameLevel)
+                        if (moves == gameLevel) {
+                            setTimeout(() => {
+                                alert('Вы выиграли')
+                                location.reload()
+                            }, 1000)
+                        }
                     } else {
                         setTimeout(() => {
                             firstCard.classList.remove('flipped')
@@ -115,25 +120,4 @@ function getNewDeck(gameLevel) {
     return newDeck
 }
 
-// function combineCards() {
-//     const pickedCards = []
-//     const cardsFront = document.querySelectorAll('.card-item-front')
-//     for (const cardFront of cardsFront) {
-//         cardFront.addEventListener('click', () => {
-//             cardFront.style.zIndex = '1'
-//             pickedCards.push(cardFront)
-//             console.log(pickedCards)
-//         })
-//     }
-//     console.log(pickedCards)
-//     if (pickedCards.length === 2) {
-//         console.log('here')
-//         if (pickedCards[0] === pickedCards[1]) {
-//             alert('Вы выиграли')
-//         } else {
-//             alert('Вы проиграли')
-//         }
-//     } else {
-//         return
-//     }
-// }
+console.log('test')
