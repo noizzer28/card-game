@@ -1,5 +1,7 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 
 module.exports = {
     entry: './index.js',
@@ -17,12 +19,17 @@ module.exports = {
             },
         ],
     },
+    optimization: {
+        minimizer: ['...', new CssMinimizerPlugin()],
+    },
+    devtool: process.env.NODE_ENV === 'production' ? false : 'source-map',
     output: {
-        path: path.resolve(__dirname, './dist'),
+        path: path.resolve(__dirname, 'dist'),
         filename: 'bundle.js',
         clean: true,
     },
     plugins: [
+        new MiniCssExtractPlugin(),
         new HtmlWebpackPlugin({
             template: './index.html',
         }),

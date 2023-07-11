@@ -6,7 +6,8 @@
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "format": "prettier —write .",
-        "build": "set NODE_ENV=production && webpack"
+        "build": "set NODE_ENV=production && webpack",
+        "start": "webpack-dev-server --open"
     },
     "author": "",
     "license": "ISC",
@@ -17,11 +18,14 @@
     },
     "devDependencies": {
         "css-loader": "^6.8.1",
+        "css-minimizer-webpack-plugin": "^5.0.1",
         "eslint": "^8.44.0",
         "html-webpack-plugin": "^5.5.3",
+        "mini-css-extract-plugin": "^2.7.6",
         "prettier": "^3.0.0",
         "style-loader": "^3.3.3",
         "webpack": "^5.88.1",
-        "webpack-cli": "^5.1.4"
+        "webpack-cli": "^5.1.4",
+        "webpack-dev-server": "^4.15.1"
     }
 }
