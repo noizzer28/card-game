@@ -1,34 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Card-game</title>
     <link rel="stylesheet" href="./styles.css">
 </head>
+
 <body>
-    <div class="start-box">
-        <h1 class="start-box-text">Выбери сложность</h1>
-        <form>
-            <div class="start-box-flex">
-                <label>
-                    <input type="radio" class="start-box-radio" id="option1" name="option" value="1">
-                    <div class="start-box-number">1</div>
-                </label>
-                <label>
-                    <input type="radio" class="start-box-radio" id="option1" name="option" value="2">
-                    <div class="start-box-number">2</div>
-                </label>
-                <label>
-                    <input type="radio" class="start-box-radio" id="option1" name="option" value="3">
-                    <div class="start-box-number">3</div>
-                </label>
+    <div id="start">
+        <div class="start-container">
+            <div class="start-box">
+                <h1 class="start-box-text">Выбери сложность</h1>
+                <form>
+                    <div class="start-box-flex">
+                        <label>
+                            <input type="radio" class="start-box-radio" id="option1" name="option" value="1">
+                            <div class="start-box-number">1</div>
+                        </label>
+                        <label>
+                            <input type="radio" class="start-box-radio" id="option2" name="option" value="2">
+                            <div class="start-box-number">2</div>
+                        </label>
+                        <label>
+                            <input type="radio" class="start-box-radio" id="option3" name="option" value="3">
+                            <div class="start-box-number">3</div>
+                        </label>
+                    </div>
+                </form>
+                <button class="start-box-button button">Старт</button>
+
             </div>
-            <button class="start-box-button button">Старт</button>
-          </form>
-
-
+        </div>
     </div>
-    
+    <div class="game">
+        <header class="game-flex">
+            <div class="game-time">
+                <span class="game-time-min">min</span>
+                <span class="game-time-sek">sek</span>
+                <div id="timeValue">00.00</div>
+            </div>
+            <button class="button">Начать заново</button>
+        </header>
+        <div class="cards-container">
+            <div class="grid back-side">
+                <!-- Рендерится -->
+            </div>
+            <div class="grid front-side">
+                <!-- Рендерится -->
+            </div>
+        </div>
+    </div>
 </body>
+<script type="module" src="./index.js"></script>
+
 </html>
