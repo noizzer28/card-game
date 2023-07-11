@@ -256,3 +256,15 @@ h1 {
 .card-value-bottom svg {
     margin-top: -2px;
 }
+
+.result {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 480px;
+    height: 460px;
+    background-color: #c2f5ff;
+    margin: auto;
+    border-radius: 12px;
+}

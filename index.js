@@ -8,6 +8,7 @@ let secondCard
 let firstCardValue
 let secondCardValue
 let moves = 0
+let minutes
 
 function renderStartPage() {
     const startContainer = document.getElementById('start')
@@ -120,4 +121,15 @@ function getNewDeck(gameLevel) {
     return newDeck
 }
 
-console.log('test')
+const timeGenerator = () => {
+    seconds += 1
+    //minutes logic
+    if (seconds >= 60) {
+        minutes += 1
+        seconds = 0
+    }
+    //format time before displaying
+    let secondsValue = seconds < 10 ? `0${seconds}` : seconds
+    let minutesValue = minutes < 10 ? `0${minutes}` : minutes
+    timeValue.innerHTML = `<span>Time:</span>${minutesValue}:${secondsValue}`
+}
