@@ -1,3 +1,4 @@
+import './styles.css'
 import Deck from './components/deck.js'
 let gameLevel = null
 const gamecontainer = document.querySelector('.game')
@@ -8,7 +9,11 @@ let secondCard
 let firstCardValue
 let secondCardValue
 let moves = 0
-let minutes
+let minutes = 0
+let seconds = 0
+let interval
+let secondsValue
+let minutesValue
 
 function renderStartPage() {
     const startContainer = document.getElementById('start')
@@ -30,6 +35,11 @@ function renderStartPage() {
 
 function renderGamePlay() {
     getNewDeck(gameLevel)
+    const timeValue = document.getElementById('timeValue')
+
+    interval = setInterval(() => {
+        timeGenerator()
+    }, 1000)
 
     const gamecontainer = document.querySelector('.game-container')
     gamecontainer.innerHTML = newDeck
@@ -37,7 +47,7 @@ function renderGamePlay() {
             return ` 
       <div class="card-container" data-value ='${card.suit.name + card.value}'>
       <div class="card-back">
-      <img src="./image/cover.jpg"></img>
+      <img src="./static/cover.jpg"></img>
       </div>
         <div class="card-front">
             <div class="card-value-top">
@@ -59,44 +69,41 @@ function renderGamePlay() {
         card.classList.add('flipped')
         setTimeout(() => {
             card.classList.remove('flipped')
-        }, 5000)
-
-        card.addEventListener('click', () => {
-            if (!card.classList.contains('matched')) {
-                card.classList.add('flipped')
-                if (!firstCard) {
-                    firstCard = card
-                    firstCardValue = card.getAttribute('data-value')
-                } else {
-                    secondCard = card
-                    secondCardValue = card.getAttribute('data-value')
-                    if (firstCardValue === secondCardValue) {
-                        firstCard.classList.add('matched')
-                        secondCard.classList.add('matched')
-                        firstCard = null
-                        secondCard = null
-                        moves += 1
-                        console.log(gameLevel)
-                        if (moves == gameLevel) {
-                            setTimeout(() => {
-                                alert('Вы выиграли')
-                                location.reload()
-                            }, 1000)
-                        }
+            card.addEventListener('click', () => {
+                if (!card.classList.contains('matched')) {
+                    card.classList.add('flipped')
+                    if (!firstCard) {
+                        firstCard = card
+                        firstCardValue = card.getAttribute('data-value')
                     } else {
-                        setTimeout(() => {
-                            firstCard.classList.remove('flipped')
-                            secondCard.classList.remove('flipped')
+                        secondCard = card
+                        secondCardValue = card.getAttribute('data-value')
+                        if (firstCardValue === secondCardValue) {
+                            firstCard.classList.add('matched')
+                            secondCard.classList.add('matched')
                             firstCard = null
                             secondCard = null
-                            alert('Вы проиграли')
-                            location.reload()
-                        }, 1000)
+                            moves += 1
+
+                            if (moves == gameLevel) {
+                                setTimeout(() => {
+                                    endGame(true)
+                                }, 1000)
+                            }
+                        } else {
+                            setTimeout(() => {
+                                firstCard.classList.remove('flipped')
+                                secondCard.classList.remove('flipped')
+                                firstCard = null
+                                secondCard = null
+                                endGame(false)
+                            }, 1000)
+                        }
                     }
+                } else {
                 }
-            } else {
-            }
-        })
+            })
+        }, 5000)
     })
 
     document.getElementById('button').addEventListener('click', () => {
@@ -123,13 +130,31 @@ function getNewDeck(gameLevel) {
 
 const timeGenerator = () => {
     seconds += 1
-    //minutes logic
-    if (seconds >= 60) {
+    if (seconds >= 59) {
         minutes += 1
         seconds = 0
     }
-    //format time before displaying
-    let secondsValue = seconds < 10 ? `0${seconds}` : seconds
-    let minutesValue = minutes < 10 ? `0${minutes}` : minutes
-    timeValue.innerHTML = `<span>Time:</span>${minutesValue}:${secondsValue}`
+    secondsValue = seconds < 10 ? `0${seconds}` : seconds
+    minutesValue = minutes < 10 ? `0${minutes}` : minutes
+    timeValue.innerHTML = `${minutesValue}:${secondsValue}`
+}
+
+function endGame(win) {
+    clearInterval(interval)
+
+    const resultModal = document.querySelector('.result')
+    resultModal.style.visibility = 'visible'
+    resultModal.style.opacity = '1'
+    resultModal.innerHTML = `<div class="result_modal">
+        <img src="${
+            win ? './static/celebration.png' : './static/dead.png'
+        }" alt="no">
+        <h1>Вы ${win ? 'выиграли' : 'проиграли'}</h1>
+        <p class="result-text">Затраченное время</p>
+        <p class="result-time">${minutesValue}:${secondsValue}</p>
+        <button id="endButton" class="button">Играть снова</button>
+    </div>`
+    document.getElementById('endButton').addEventListener('click', () => {
+        location.reload()
+    })
 }
