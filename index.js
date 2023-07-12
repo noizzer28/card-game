@@ -65,6 +65,7 @@ function renderGamePlay() {
         .join('')
 
     const cards = document.querySelectorAll('.card-container')
+    console.log(cards)
     cards.forEach((card) => {
         card.classList.add('flipped')
         setTimeout(() => {
@@ -96,7 +97,7 @@ function renderGamePlay() {
                                 secondCard.classList.remove('flipped')
                                 firstCard = null
                                 secondCard = null
-                                endGame(false)
+                                endGame(false, cards)
                             }, 1000)
                         }
                     }
@@ -139,9 +140,13 @@ const timeGenerator = () => {
     timeValue.innerHTML = `${minutesValue}:${secondsValue}`
 }
 
-function endGame(win) {
+function endGame(win, cards) {
+    if (!win) {
+        cards.forEach((card) => {
+            card.classList.remove('flipped')
+        })
+    }
     clearInterval(interval)
-
     const resultModal = document.querySelector('.result')
     resultModal.style.visibility = 'visible'
     resultModal.style.opacity = '1'
