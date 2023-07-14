@@ -36,10 +36,11 @@ function renderStartPage() {
 function renderGamePlay() {
     getNewDeck(gameLevel)
     const timeValue = document.getElementById('timeValue')
-
-    interval = setInterval(() => {
-        timeGenerator()
-    }, 1000)
+    setTimeout(() => {
+        interval = setInterval(() => {
+            timeGenerator()
+        }, 1000)
+    }, 5000)
 
     const gamecontainer = document.querySelector('.game-container')
     gamecontainer.innerHTML = newDeck
@@ -65,7 +66,6 @@ function renderGamePlay() {
         .join('')
 
     const cards = document.querySelectorAll('.card-container')
-    console.log(cards)
     cards.forEach((card) => {
         card.classList.add('flipped')
         setTimeout(() => {
@@ -80,12 +80,9 @@ function renderGamePlay() {
                         secondCard = card
                         secondCardValue = card.getAttribute('data-value')
                         if (firstCardValue === secondCardValue) {
-                            firstCard.classList.add('matched')
-                            secondCard.classList.add('matched')
                             firstCard = null
                             secondCard = null
                             moves += 1
-
                             if (moves == gameLevel) {
                                 setTimeout(() => {
                                     endGame(true)
@@ -93,15 +90,12 @@ function renderGamePlay() {
                             }
                         } else {
                             setTimeout(() => {
-                                firstCard.classList.remove('flipped')
-                                secondCard.classList.remove('flipped')
                                 firstCard = null
                                 secondCard = null
                                 endGame(false, cards)
-                            }, 1000)
+                            }, 1500)
                         }
                     }
-                } else {
                 }
             })
         }, 5000)
@@ -113,7 +107,6 @@ function renderGamePlay() {
 }
 
 renderStartPage()
-
 function getNewDeck(gameLevel) {
     const tempDeck = []
 
