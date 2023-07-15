@@ -9,6 +9,7 @@
         "sourceMap": true,
         "moduleResolution": "node",
         "allowImportingTsExtensions": true,
+        "allowSyntheticDefaultImports": true,
         "emitDeclarationOnly": true
     },
     "files": ["./components/deck.ts"]

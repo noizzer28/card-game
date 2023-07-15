@@ -114,7 +114,7 @@ function renderGamePlay() {
 
 renderStartPage()
 function getNewDeck(gameLevel) {
-    const tempDeck = []
+    const tempDeck: any[] = []
 
     for (let i = 0; i < gameLevel; i++) {
         const randomIndex = Math.floor(Math.random() * deck.length)
