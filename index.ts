@@ -1,33 +1,38 @@
 import './styles.css'
-import Deck from './components/deck.js'
-let gameLevel = null
-const gamecontainer = document.querySelector('.game')
+import Deck from './components/deck.ts'
+let gameLevel: string
+const gamecontainer: HTMLElement = document.querySelector('.game')!
+const timeValue = document.getElementById('timeValue')!
 const deck = Object.values(new Deck()).flat()
-let newDeck = []
-let firstCard
+let newDeck: any[] = []
+let firstCard: object
 let secondCard
-let firstCardValue
-let secondCardValue
+let firstCardValue: any = ''
+let secondCardValue: any = ''
 let moves = 0
 let minutes = 0
 let seconds = 0
-let interval
-let secondsValue
-let minutesValue
+let interval: NodeJS.Timer
+let secondsValue: string
+let minutesValue: string
 
-function renderStartPage() {
-    const startContainer = document.getElementById('start')
-    const startButton = document.querySelector('.start-box-button')
-    const menuOptions = document.querySelectorAll('.start-box-radio')
+function renderStartPage(): void {
+    const startContainer = document.getElementById('start')!
+    const startButton: HTMLElement =
+        document.querySelector('.start-box-button')!
+    const menuOptions: NodeListOf<HTMLInputElement> =
+        document.querySelectorAll('.start-box-radio')
 
     for (const menuOption of menuOptions) {
         startButton.addEventListener('click', (event) => {
             event.preventDefault()
-            if (menuOption.checked) {
-                gameLevel = menuOption.value
-                startContainer.style.display = 'none'
-                gamecontainer.style.display = 'block'
-                renderGamePlay()
+            if (menuOption) {
+                if (menuOption.checked) {
+                    gameLevel = menuOption.value
+                    startContainer.style.display = 'none'
+                    gamecontainer.style.display = 'block'
+                    renderGamePlay()
+                }
             }
         })
     }
@@ -35,14 +40,14 @@ function renderStartPage() {
 
 function renderGamePlay() {
     getNewDeck(gameLevel)
-    const timeValue = document.getElementById('timeValue')
+
     setTimeout(() => {
         interval = setInterval(() => {
             timeGenerator()
         }, 1000)
     }, 5000)
 
-    const gamecontainer = document.querySelector('.game-container')
+    const gamecontainer = document.querySelector('.game-container')!
     gamecontainer.innerHTML = newDeck
         .map((card) => {
             return ` 
@@ -80,17 +85,18 @@ function renderGamePlay() {
                         secondCard = card
                         secondCardValue = card.getAttribute('data-value')
                         if (firstCardValue === secondCardValue) {
-                            firstCard = null
+                            firstCard = []
                             secondCard = null
                             moves += 1
-                            if (moves == gameLevel) {
+                            let movesString = moves.toString()
+                            if (movesString == gameLevel) {
                                 setTimeout(() => {
-                                    endGame(true)
+                                    endGame(true, cards)
                                 }, 1000)
                             }
                         } else {
                             setTimeout(() => {
-                                firstCard = null
+                                firstCard = []
                                 secondCard = null
                                 endGame(false, cards)
                             }, 1500)
@@ -100,8 +106,8 @@ function renderGamePlay() {
             })
         }, 5000)
     })
-
-    document.getElementById('button').addEventListener('click', () => {
+    const buttonElement = document.getElementById('button')!
+    buttonElement.addEventListener('click', () => {
         location.reload()
     })
 }
@@ -128,8 +134,8 @@ const timeGenerator = () => {
         minutes += 1
         seconds = 0
     }
-    secondsValue = seconds < 10 ? `0${seconds}` : seconds
-    minutesValue = minutes < 10 ? `0${minutes}` : minutes
+    secondsValue = seconds < 10 ? `0${seconds.toString()}` : seconds.toString()
+    minutesValue = minutes < 10 ? `0${minutes.toString()}` : minutes.toString()
     timeValue.innerHTML = `${minutesValue}:${secondsValue}`
 }
 
@@ -140,7 +146,7 @@ function endGame(win, cards) {
         })
     }
     clearInterval(interval)
-    const resultModal = document.querySelector('.result')
+    const resultModal: HTMLElement = document.querySelector('.result')!
     resultModal.style.visibility = 'visible'
     resultModal.style.opacity = '1'
     resultModal.innerHTML = `<div class="result_modal">
@@ -152,7 +158,7 @@ function endGame(win, cards) {
         <p class="result-time">${minutesValue}:${secondsValue}</p>
         <button id="endButton" class="button">Играть снова</button>
     </div>`
-    document.getElementById('endButton').addEventListener('click', () => {
+    document.getElementById('endButton')!.addEventListener('click', () => {
         location.reload()
     })
 }

@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+        "strict": true, // Включает все жесткие проверки типов
+        "outDir": "./dist/",
+        "noImplicitAny": false,
+        "module": "es6",
+        "target": "es6",
+        "allowJs": true,
+        "sourceMap": true,
+        "moduleResolution": "node",
+        "allowImportingTsExtensions": true,
+        "emitDeclarationOnly": true
+    },
+    "files": ["./components/deck.ts"]
+}
