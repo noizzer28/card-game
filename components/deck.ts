@@ -42,6 +42,12 @@ const SUITES = [
 ]
 const VALUES: string[] = ['6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
 
+type Suit = {
+    name: string
+    top: string
+    middle: string
+}
+
 export default class Deck {
     card: Card[]
     constructor(cards = getDeck()) {
@@ -50,13 +56,9 @@ export default class Deck {
 }
 
 class Card {
-    suit: {
-        name: string
-        top: string
-        middle: string
-    }
+    suit: Suit
     value: string
-    constructor(suit, value: string) {
+    constructor(suit: Suit, value: string) {
         this.suit = suit
         this.value = value
     }

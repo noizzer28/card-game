@@ -1040,13 +1040,12 @@ var __webpack_exports__ = {};
   \******************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _styles_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./styles.css */ "./styles.css");
-/* harmony import */ var _components_deck_ts__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/deck.ts */ "./components/deck.ts");
+/* harmony import */ var _components_deck__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/deck */ "./components/deck.ts");
 
 
 let gameLevel;
 const gamecontainer = document.querySelector('.game');
 const timeValue = document.getElementById('timeValue');
-const deck = Object.values(new _components_deck_ts__WEBPACK_IMPORTED_MODULE_1__["default"]()).flat();
 let newDeck = [];
 let firstCard;
 let secondCard;
@@ -1058,11 +1057,13 @@ let seconds = 0;
 let interval;
 let secondsValue;
 let minutesValue;
+const deck = Object.values(new _components_deck__WEBPACK_IMPORTED_MODULE_1__["default"]()).flat();
 function renderStartPage() {
     const startContainer = document.getElementById('start');
     const startButton = document.querySelector('.start-box-button');
     const menuOptions = document.querySelectorAll('.start-box-radio');
-    for (const menuOption of menuOptions) {
+    const menuOptionsArray = Array.from(menuOptions);
+    for (const menuOption of menuOptionsArray) {
         startButton.addEventListener('click', (event) => {
             event.preventDefault();
             if (menuOption) {
@@ -1077,12 +1078,14 @@ function renderStartPage() {
     }
 }
 function renderGamePlay() {
+    console.log(gameLevel);
     getNewDeck(gameLevel);
     setTimeout(() => {
         interval = setInterval(() => {
             timeGenerator();
         }, 1000);
     }, 5000);
+    console.log(newDeck);
     const gamecontainer = document.querySelector('.game-container');
     gamecontainer.innerHTML = newDeck
         .map((card) => {
@@ -1114,15 +1117,18 @@ function renderGamePlay() {
                 if (!card.classList.contains('matched')) {
                     card.classList.add('flipped');
                     if (!firstCard) {
+                        console.log('1st here');
                         firstCard = card;
+                        firstCard.classList.add('matched');
                         firstCardValue = card.getAttribute('data-value');
                     }
                     else {
+                        console.log('2nd here');
                         secondCard = card;
                         secondCardValue = card.getAttribute('data-value');
                         if (firstCardValue === secondCardValue) {
-                            firstCard = [];
-                            secondCard = null;
+                            firstCard = null;
+                            secondCard.classList.add('matched');
                             moves += 1;
                             let movesString = moves.toString();
                             if (movesString == gameLevel) {
@@ -1133,8 +1139,8 @@ function renderGamePlay() {
                         }
                         else {
                             setTimeout(() => {
-                                firstCard = [];
-                                secondCard = null;
+                                // firstCard = []
+                                // secondCard = null
                                 endGame(false, cards);
                             }, 1500);
                         }

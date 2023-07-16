@@ -1,16 +1,14 @@
 {
     "compilerOptions": {
-        "strict": true, // Включает все жесткие проверки типов
+        "strict": true,
         "outDir": "./dist/",
         "noImplicitAny": false,
         "module": "es6",
         "target": "es6",
         "allowJs": true,
+        "lib": ["DOM", "ES2019"],
         "sourceMap": true,
-        "moduleResolution": "node",
-        "allowImportingTsExtensions": true,
-        "allowSyntheticDefaultImports": true,
-        "emitDeclarationOnly": true
+        "moduleResolution": "node"
     },
     "files": ["./components/deck.ts"]
 }

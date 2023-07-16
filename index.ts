@@ -1,12 +1,12 @@
 import './styles.css'
-import Deck from './components/deck.ts'
+import Deck from './components/deck'
 let gameLevel: string
 const gamecontainer: HTMLElement = document.querySelector('.game')!
 const timeValue = document.getElementById('timeValue')!
-const deck = Object.values(new Deck()).flat()
+
 let newDeck: any[] = []
-let firstCard: object
-let secondCard
+let firstCard: Element | null
+let secondCard: Element | null
 let firstCardValue: any = ''
 let secondCardValue: any = ''
 let moves = 0
@@ -16,14 +16,15 @@ let interval: NodeJS.Timer
 let secondsValue: string
 let minutesValue: string
 
+const deck = Object.values(new Deck()).flat()
 function renderStartPage(): void {
     const startContainer = document.getElementById('start')!
     const startButton: HTMLElement =
         document.querySelector('.start-box-button')!
     const menuOptions: NodeListOf<HTMLInputElement> =
         document.querySelectorAll('.start-box-radio')
-
-    for (const menuOption of menuOptions) {
+    const menuOptionsArray = Array.from(menuOptions)
+    for (const menuOption of menuOptionsArray) {
         startButton.addEventListener('click', (event) => {
             event.preventDefault()
             if (menuOption) {
@@ -46,7 +47,6 @@ function renderGamePlay() {
             timeGenerator()
         }, 1000)
     }, 5000)
-
     const gamecontainer = document.querySelector('.game-container')!
     gamecontainer.innerHTML = newDeck
         .map((card) => {
@@ -80,13 +80,14 @@ function renderGamePlay() {
                     card.classList.add('flipped')
                     if (!firstCard) {
                         firstCard = card
+                        firstCard.classList.add('matched')
                         firstCardValue = card.getAttribute('data-value')
                     } else {
                         secondCard = card
                         secondCardValue = card.getAttribute('data-value')
                         if (firstCardValue === secondCardValue) {
-                            firstCard = []
-                            secondCard = null
+                            firstCard = null
+                            secondCard.classList.add('matched')
                             moves += 1
                             let movesString = moves.toString()
                             if (movesString == gameLevel) {
@@ -96,8 +97,8 @@ function renderGamePlay() {
                             }
                         } else {
                             setTimeout(() => {
-                                firstCard = []
-                                secondCard = null
+                                // firstCard = []
+                                // secondCard = null
                                 endGame(false, cards)
                             }, 1500)
                         }
@@ -139,7 +140,7 @@ const timeGenerator = () => {
     timeValue.innerHTML = `${minutesValue}:${secondsValue}`
 }
 
-function endGame(win, cards) {
+function endGame(win: boolean, cards) {
     if (!win) {
         cards.forEach((card) => {
             card.classList.remove('flipped')
