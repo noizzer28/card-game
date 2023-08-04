@@ -1078,14 +1078,12 @@ function renderStartPage() {
     }
 }
 function renderGamePlay() {
-    console.log(gameLevel);
     getNewDeck(gameLevel);
     setTimeout(() => {
         interval = setInterval(() => {
             timeGenerator();
         }, 1000);
     }, 5000);
-    console.log(newDeck);
     const gamecontainer = document.querySelector('.game-container');
     gamecontainer.innerHTML = newDeck
         .map((card) => {
@@ -1117,13 +1115,11 @@ function renderGamePlay() {
                 if (!card.classList.contains('matched')) {
                     card.classList.add('flipped');
                     if (!firstCard) {
-                        console.log('1st here');
                         firstCard = card;
                         firstCard.classList.add('matched');
                         firstCardValue = card.getAttribute('data-value');
                     }
                     else {
-                        console.log('2nd here');
                         secondCard = card;
                         secondCardValue = card.getAttribute('data-value');
                         if (firstCardValue === secondCardValue) {
