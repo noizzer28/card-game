@@ -4,7 +4,7 @@ let gameLevel: string
 const gamecontainer: HTMLElement = document.querySelector('.game')!
 const timeValue = document.getElementById('timeValue')!
 
-let newDeck: any[] = []
+export let newDeck: any[] = []
 let firstCard: Element | null
 let secondCard: Element | null
 let firstCardValue: any = ''
@@ -16,7 +16,7 @@ let interval: NodeJS.Timer
 let secondsValue: string
 let minutesValue: string
 
-const deck = Object.values(new Deck()).flat()
+export const deck = Object.values(new Deck()).flat()
 function renderStartPage(): void {
     const startContainer = document.getElementById('start')!
     const startButton: HTMLElement =
@@ -114,7 +114,7 @@ function renderGamePlay() {
 }
 
 renderStartPage()
-function getNewDeck(gameLevel) {
+export function getNewDeck(gameLevel) {
     const tempDeck: any[] = []
 
     for (let i = 0; i < gameLevel; i++) {

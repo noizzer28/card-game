@@ -1,0 +1,100 @@
+import { renderStartPage, getNewDeck, timeGenerator, endGame } from './yourScriptFile'
+
+describe('renderStartPage', () => {
+  test('should render the start page and set the game level', () => {
+    // Mock the necessary DOM elements and their properties
+    document.body.innerHTML = `
+      <div id="start">
+        <input type="radio" class="start-box-radio" value="easy" checked>
+        <input type="radio" class="start-box-radio" value="medium">
+        <input type="radio" class="start-box-radio" value="hard">
+        <button class="start-box-button"></button>
+      </div>
+      <div class="game" style="display: none;"></div>
+    `
+
+    // Call the function to be tested
+    renderStartPage()
+
+    // Simulate a click event on the start button
+    const startButton = document.querySelector('.start-box-button')!
+    startButton.click()
+
+    // Assert that the game level is set correctly
+    expect(gameLevel).toBe('easy')
+
+    // Assert that the start page is hidden and the game container is displayed
+    const startContainer = document.getElementById('start')!
+    const gameContainer = document.querySelector('.game')!
+    expect(startContainer.style.display).toBe('none')
+    expect(gameContainer.style.display).toBe('block')
+  })
+})
+
+describe('getNewDeck', () => {
+  test('should return a new deck with the specified game level', () => {
+    // Mock the necessary variables and functions
+    const deck = [
+      { suit: { name: 'spades', top: '♠', middle: '♠', bottom: '♠' }, value: 'A' },
+      { suit: { name: 'hearts', top: '♥', middle: '♥', bottom: '♥' }, value: 'A' },
+      { suit: { name: 'clubs', top: '♣', middle: '♣', bottom: '♣' }, value: 'A' },
+      { suit: { name: 'diamonds', top: '♦', middle: '♦', bottom: '♦' }, value: 'A' }
+    ]
+
+    // Call the function to be tested
+    const newDeck = getNewDeck(2)
+
+    // Assert that the new deck has the correct length
+    expect(newDeck.length).toBe(4)
+
+    // Assert that the new deck contains the correct cards
+    expect(newDeck).toEqual([...deck, ...deck])
+  })
+})
+
+describe('timeGenerator', () => {
+  test('should increment the seconds and minutes correctly', () => {
+    // Mock the necessary DOM elements and their properties
+    document.body.innerHTML = `
+      <div id="timeValue"></div>
+    `
+
+    // Call the function to be tested
+    timeGenerator()
+
+    // Assert that the seconds and minutes are incremented correctly
+    expect(seconds).toBe(1)
+    expect(minutes).toBe(0)
+
+    // Assert that the time value is updated correctly
+    const timeValue = document.getElementById('timeValue')!
+    expect(timeValue.innerHTML).toBe('00:01')
+  })
+})
+
+describe('endGame', () => {
+  test('should display the result modal and reload the page when the "Играть снова" button is clicked', () => {
+    // Mock the necessary DOM elements and their properties
+    document.body.innerHTML = `
+      <div class="result" style="visibility: hidden; opacity: 0;"></div>
+    `
+
+    // Call the function to be tested
+    endGame(true, [])
+
+    // Assert that the result modal is displayed correctly
+    const resultModal = document.querySelector('.result')!
+    expect(resultModal.style.visibility).toBe('visible')
+    expect(resultModal.style.opacity).toBe('1')
+
+    // Assert that the result modal content is correct
+    expect(resultModal.innerHTML).toContain('выиграли')
+
+    // Simulate a click event on the "Играть снова" button
+    const endButton = document.getElementById('endButton')!
+    endButton.click()
+
+    // Assert that the page is reloaded
+    expect(location.reload).toHaveBeenCalled()
+  })
+})
