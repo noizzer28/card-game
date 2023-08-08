@@ -140,7 +140,7 @@ export const timeGenerator = (timeValue) => {
     timeValue.innerHTML = `${minutesValue}:${secondsValue}`
 }
 
-function endGame(win: boolean, cards) {
+export function endGame(win: boolean, cards) {
     if (!win) {
         cards.forEach((card) => {
             card.classList.remove('flipped')
