@@ -17,4 +17,6 @@ module.exports = {
     moduleNameMapper: {
         '\\.(css|less)$': 'identity-obj-proxy',
     },
+    verbose: true,
+    // setupFiles: ['./__mocks__/client.js'],
 }

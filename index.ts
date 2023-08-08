@@ -10,8 +10,8 @@ let secondCard: Element | null
 let firstCardValue: any = ''
 let secondCardValue: any = ''
 let moves = 0
-let minutes = 0
-let seconds = 0
+export let minutes = 0
+export let seconds = 0
 let interval: NodeJS.Timer
 let secondsValue: string
 let minutesValue: string
@@ -44,7 +44,7 @@ function renderGamePlay() {
 
     setTimeout(() => {
         interval = setInterval(() => {
-            timeGenerator()
+            timeGenerator(timeValue)
         }, 1000)
     }, 5000)
     const gamecontainer = document.querySelector('.game-container')!
@@ -129,7 +129,7 @@ export function getNewDeck(gameLevel) {
     return newDeck
 }
 
-const timeGenerator = () => {
+export const timeGenerator = (timeValue) => {
     seconds += 1
     if (seconds >= 59) {
         minutes += 1
