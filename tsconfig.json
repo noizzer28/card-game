@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+        "strict": true,
+        "outDir": "./dist/",
+        "noImplicitAny": false,
+        "module": "es6",
+        "target": "es6",
+        "allowJs": true,
+        "lib": ["DOM", "ES2019"],
+        "sourceMap": true,
+        "moduleResolution": "node"
+    },
+    "files": ["./components/deck.ts"]
+}

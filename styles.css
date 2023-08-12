@@ -256,3 +256,47 @@ h1 {
 .card-value-bottom svg {
     margin-top: -2px;
 }
+
+.result {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 2;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.3);
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.4s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.result_modal {
+    width: 480px;
+    height: 460px;
+    background-color: #c2f5ff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px;
+    margin: 0 auto;
+}
+.result_modal h1 {
+    margin: 9px 0 28px 0;
+}
+.result_modal button {
+    margin-bottom: 48px;
+}
+
+.result-text {
+    font-size: 24px;
+    line-height: 32px;
+}
+.result-time {
+    font-size: 64px;
+    line-height: 72px;
+    margin-top: 10px;
+    margin-bottom: 40px;
+}

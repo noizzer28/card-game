@@ -40,22 +40,31 @@ const SUITES = [
     `,
     },
 ]
-const VALUES = ['6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
+const VALUES: string[] = ['6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
+
+type Suit = {
+    name: string
+    top: string
+    middle: string
+}
 
 export default class Deck {
+    card: Card[]
     constructor(cards = getDeck()) {
         this.card = cards
     }
 }
 
 class Card {
-    constructor(suit, value) {
+    suit: Suit
+    value: string
+    constructor(suit: Suit, value: string) {
         this.suit = suit
         this.value = value
     }
 }
 
-function getDeck() {
+function getDeck(): Card[] {
     return SUITES.flatMap((suit) => {
         return VALUES.map((value) => {
             return new Card(suit, value)
