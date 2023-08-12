@@ -1,5 +1,5 @@
 import Deck from './components/deck'
-const { getNewDeck, timeGenerator, endGame } = require('./index')
+import { getNewDeck, timeGenerator, endGame } from './index'
 
 describe('deck creation', () => {
     it('should have 36 cards in array', () => {
