@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card-game</title>
+<script defer src="bundle.js"></script></head>
+
+<body>
+    <div id="start">
+        <div class="start-container">
+            <div class="start-box">
+                <h1 class="start-box-text">Выбери сложность</h1>
+                <form>
+                    <div class="start-box-flex">
+                        <label>
+                            <input type="radio" class="start-box-radio" id="option1" name="option" value="3">
+                            <div class="start-box-number">1</div>
+                        </label>
+                        <label>
+                            <input type="radio" class="start-box-radio" id="option2" name="option" value="6">
+                            <div class="start-box-number">2</div>
+                        </label>
+                        <label>
+                            <input type="radio" class="start-box-radio" id="option3" name="option" value="9">
+                            <div class="start-box-number">3</div>
+                        </label>
+                    </div>
+                </form>
+                <button class="start-box-button button">Старт</button>
+
+            </div>
+        </div>
+    </div>
+    <div class="game">
+        <header class="game-flex">
+            <div class="game-time">
+                <span class="game-time-min">min</span>
+                <span class="game-time-sek">sek</span>
+                <div id="timeValue">00:00</div>
+            </div>
+            <button class="button" id="button">Начать заново</button>
+        </header>
+        <div class="game-container">
+            <!-- Рендерится -->
+        </div>
+    </div>
+    <div class="result">
+
+    </div>
+</body>
+
+</html>
