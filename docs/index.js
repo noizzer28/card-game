@@ -53,7 +53,7 @@ const SUITES = [
 ]
 const VALUES = ['6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
 
-export default class Deck {
+class Deck {
     constructor(cards = getDeck()) {
         this.card = cards
     }
