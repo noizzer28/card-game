@@ -1,5 +1,5 @@
 import './styles.css'
-import Deck from '../components/deck.js'
+import Deck from './deck.js'
 let gameLevel = null
 const gamecontainer = document.querySelector('.game')
 const deck = Object.values(new Deck()).flat()
