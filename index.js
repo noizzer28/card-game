@@ -1,5 +1,10 @@
 let gameLevel = null
 const gamecontainer = document.querySelector('.game')
+class Deck {
+    constructor(cards = getDeck()) {
+        this.card = cards
+    }
+}
 const deck = Object.values(new Deck()).flat()
 let newDeck = []
 let firstCard
@@ -53,11 +58,7 @@ const SUITES = [
 ]
 const VALUES = ['6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
 
-class Deck {
-    constructor(cards = getDeck()) {
-        this.card = cards
-    }
-}
+
 
 class Card {
     constructor(suit, value) {
