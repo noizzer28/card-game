@@ -32,7 +32,7 @@ body {
     scroll-behavior: smooth;
     text-rendering: optimizeSpeed;
     line-height: 1.5;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'StratosSkyeng', sans-serif;
 }
 
 * ul,
@@ -55,7 +55,7 @@ select {
 
 @font-face {
     font-family: StratosSkyeng;
-    src: url(./fonts/stratosskyengweb-regular.woff);
+    src: url(./stratosskyengweb-regular.woff);
 }
 
 body {
